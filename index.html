@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Nhà của Xoài</title>
+    <meta name="description" content="HouseOfXoai — một góc nhỏ 3D có ngôi nhà của các bạn capybara, đoàn tàu cao tốc và chiếc xe của cậu bé Xoài." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cellipse cx='16' cy='18' rx='10' ry='12' fill='%23ffb627'/%3E%3Cpath d='M16 6c2-3 6-3 8-2-2 2-5 3-8 2z' fill='%2356a83f'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script type="module" crossorigin src="./assets/index-mNNV_gJe.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-ByZnO_fQ.css">
+  </head>
+  <body>
+    <canvas id="scene"></canvas>
+
+    <div id="loader">
+      <div class="loader-inner">
+        <div class="loader-mango"></div>
+        <p>Đang dọn nhà cho Xoài…</p>
+      </div>
+    </div>
+
+    <header class="hud-title glass hud-reveal">
+      <span class="brand-dot"></span>
+      <div>
+        <h1>Nhà của Xoài</h1>
+        <p>HouseOfXoai · một góc nhỏ bình yên</p>
+      </div>
+    </header>
+
+    <nav class="hud-actions hud-reveal">
+      <button class="glass" data-action="vehicle" title="Tương tác: lên/xuống xe, xe đạp, xích đu, gọi nước, ngồi ghế (E)">
+        <svg viewBox="0 0 24 24"><path d="M14 4h5v16h-5"/><path d="M4 12h10M10 8l4 4-4 4"/></svg>
+        <span data-label>Xuống xe</span>
+      </button>
+      <button class="glass" data-action="camera" title="Đổi góc nhìn (C)">
+        <svg viewBox="0 0 24 24"><path d="M4 8h3l2-2h6l2 2h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
+        <span data-label>Góc nhìn</span>
+      </button>
+      <button class="glass" data-action="night" title="Ngày / Đêm (N)">
+        <svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+        <span data-label>Buổi tối</span>
+      </button>
+      <button class="glass" data-action="horn" title="Bấm còi (H)">
+        <svg viewBox="0 0 24 24"><path d="M4 10v4h3l6 4V6L7 10z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+        <span data-label>Bấm còi</span>
+      </button>
+      <button class="glass walk-only" data-action="kick" title="Sút bóng (K)">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7l4 3-1.5 4.5h-5L8 10z"/></svg>
+        <span data-label>Sút bóng</span>
+      </button>
+      <button class="glass walk-only" data-action="sleep" title="Nằm ngủ (Z)">
+        <svg viewBox="0 0 24 24"><path d="M3 18h18M5 18v-5h14v5M7 13v-2a2 2 0 0 1 4 0v2"/><path d="M15 4h4l-4 4h4"/></svg>
+        <span data-label>Nằm ngủ</span>
+      </button>
+      <button class="glass" data-action="wardrobe" title="Thay đồ: tóc, mũ, kính, áo, quần (T)">
+        <svg viewBox="0 0 24 24"><path d="M8 4l-5 3 2 4 2-1v10h10V10l2 1 2-4-5-3a4 4 0 0 1-8 0z"/></svg>
+        <span data-label>Thay đồ</span>
+      </button>
+      <button class="glass walk-only touch-only" data-action="jump" title="Nhảy (Space)">
+        <svg viewBox="0 0 24 24"><path d="M12 19V6M6 12l6-6 6 6"/></svg>
+        <span data-label>Nhảy</span>
+      </button>
+    </nav>
+
+    <aside class="hud-help glass hud-reveal">
+      <div><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> / <kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd> <span class="drive-only">lái xe / đạp xe</span><span class="walk-only">đi bộ</span> · <kbd>E</kbd> <span class="drive-only">xuống xe</span><span class="walk-only">tương tác (xe, xe đạp, xích đu, quầy nước, ghế tàu)</span></div>
+      <div class="drive-only"><kbd>Space</kbd> phanh · <kbd>H</kbd> còi / chuông · <kbd>C</kbd> góc nhìn · <kbd>N</kbd> ngày/đêm · <kbd>T</kbd> thay đồ</div>
+      <div class="walk-only"><kbd>Space</kbd> nhảy · <kbd>Shift</kbd> chạy · <kbd>K</kbd> sút bóng · <kbd>Z</kbd> nằm ngủ · <kbd>H</kbd> vẫy tay · <kbd>C</kbd> góc nhìn · <kbd>N</kbd> ngày/đêm · <kbd>T</kbd> thay đồ</div>
+    </aside>
+
+    <div class="hud-speed glass hud-reveal">
+      <strong id="speed">0</strong><span>km/h</span>
+    </div>
+
+    <div id="toast" role="status" aria-live="polite"></div>
+
+    <div id="prompt" class="glass"></div>
+
+    <section id="menu" class="glass" aria-label="Quầy nước Capybara">
+      <header>
+        <h2>Quầy nước Capy</h2>
+        <p>Bạn capybara pha gì cho Xoài đây?</p>
+      </header>
+      <div class="menu-grid"></div>
+      <button class="menu-close" type="button">Để sau <kbd>Esc</kbd></button>
+    </section>
+
+    <section id="join" class="glass" aria-label="Vào nhà Xoài cùng mọi người">
+      <header>
+        <h2>Vào nhà Xoài cùng mọi người</h2>
+        <p>Máy chủ trong mạng nhà đang mở. Đặt tên để các bạn khác nhận ra bạn nhé.</p>
+      </header>
+      <form>
+        <input name="name" maxlength="16" placeholder="Tên của bạn" autocomplete="off" required />
+        <button type="submit">Vào nhà</button>
+      </form>
+      <button class="join-solo" type="button">Chơi một mình</button>
+    </section>
+
+    <section id="wardrobe" class="glass" aria-label="Tủ đồ">
+      <header>
+        <h2>Tủ đồ của bạn</h2>
+        <p>Chọn kiểu và màu, nhân vật đổi ngay. Mọi người trong nhà cũng thấy.</p>
+      </header>
+      <div class="wardrobe-body"></div>
+      <button class="wardrobe-done" type="button">Xong <kbd>Esc</kbd></button>
+    </section>
+
+    <aside id="online" class="glass" aria-label="Người đang chơi">
+      <header><span class="online-dot"></span><strong data-count>1</strong> người trong nhà</header>
+      <ul></ul>
+    </aside>
+
+    <div id="fade" aria-hidden="true"></div>
+
+    <div id="joystick" aria-hidden="true"><div class="knob"></div></div>
+
+  </body>
+</html>
