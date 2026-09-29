@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <script type="module" crossorigin src="./assets/index-B2fxTvlD.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-59kdxlA1.css">
+    <script type="module" crossorigin src="./assets/index-CwE26O8w.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BXR866_L.css">
   </head>
   <body>
     <canvas id="scene"></canvas>
@@ -43,6 +43,10 @@
         <svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
         <span data-label>Buổi tối</span>
       </button>
+      <button class="glass" data-action="weather" title="Đổi thời tiết: nắng, gió, mưa, tuyết, giông bão (R)">
+        <svg viewBox="0 0 24 24"><path d="M7 17a4 4 0 0 1-.5-8 5.5 5.5 0 0 1 10.6 1.5A3.3 3.3 0 0 1 17 17z"/><path d="M9 20l-1 2M13 20l-1 2M17 20l-1 2"/></svg>
+        <span data-label>Nắng đẹp</span>
+      </button>
       <button class="glass" data-action="horn" title="Bấm còi (H)">
         <svg viewBox="0 0 24 24"><path d="M4 10v4h3l6 4V6L7 10z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/></svg>
         <span data-label>Bấm còi</span>
@@ -50,6 +54,10 @@
       <button class="glass walk-only" data-action="kick" title="Sút bóng (K)">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7l4 3-1.5 4.5h-5L8 10z"/></svg>
         <span data-label>Sút bóng</span>
+      </button>
+      <button class="glass walk-only" data-action="flash" title="Flash: chạy siêu nhanh 50 km/h (Q)">
+        <svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>
+        <span data-label>Flash</span>
       </button>
       <button class="glass walk-only" data-action="sleep" title="Nằm ngủ (Z)">
         <svg viewBox="0 0 24 24"><path d="M3 18h18M5 18v-5h14v5M7 13v-2a2 2 0 0 1 4 0v2"/><path d="M15 4h4l-4 4h4"/></svg>
@@ -67,8 +75,8 @@
 
     <aside class="hud-help glass hud-reveal">
       <div><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> / <kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd> <span class="drive-only">lái xe / đạp xe</span><span class="walk-only">đi bộ</span> · <kbd>E</kbd> <span class="drive-only">xuống xe</span><span class="walk-only">tương tác (xe, xe đạp, xích đu, quầy nước, ghế tàu)</span></div>
-      <div class="drive-only"><kbd>Space</kbd> phanh · <kbd>H</kbd> còi / chuông · <kbd>C</kbd> góc nhìn · <kbd>N</kbd> ngày/đêm · <kbd>T</kbd> thay đồ</div>
-      <div class="walk-only"><kbd>Space</kbd> nhảy · <kbd>Shift</kbd> chạy · <kbd>K</kbd> sút bóng · <kbd>Z</kbd> nằm ngủ · <kbd>H</kbd> vẫy tay · <kbd>C</kbd> góc nhìn · <kbd>N</kbd> ngày/đêm · <kbd>T</kbd> thay đồ</div>
+      <div class="drive-only"><kbd>Space</kbd> phanh · <kbd>H</kbd> còi / chuông · <kbd>C</kbd> góc nhìn · <kbd>N</kbd> ngày/đêm · <kbd>R</kbd> thời tiết · <kbd>T</kbd> thay đồ</div>
+      <div class="walk-only"><kbd>Space</kbd> nhảy · <kbd>Shift</kbd> chạy · <kbd>K</kbd> sút bóng · <kbd>Q</kbd> Flash · <kbd>Z</kbd> nằm ngủ · <kbd>H</kbd> vẫy tay · <kbd>C</kbd> góc nhìn · <kbd>N</kbd> ngày/đêm · <kbd>R</kbd> thời tiết · <kbd>T</kbd> thay đồ</div>
     </aside>
 
     <div class="hud-speed glass hud-reveal">
@@ -130,6 +138,7 @@
       <button type="button" class="act act-jump" data-touch="jump"><svg viewBox="0 0 24 24"><path d="M12 19V6M6 12l6-6 6 6"/></svg><span data-touch-label>Nhảy</span></button>
       <button type="button" class="act act-alt" data-touch="alt"><svg viewBox="0 0 24 24"><path d="M4 10v4h3l6 4V6L7 10z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/></svg><span data-touch-label>Vẫy tay</span></button>
       <button type="button" class="act act-run" data-touch="run" aria-pressed="false"><svg viewBox="0 0 24 24"><circle cx="14" cy="4.5" r="1.8"/><path d="M8 21l3-6 3 2v5M6 12l3-4h5l3 4M11 15l2-5"/></svg><span data-touch-label>Chạy</span></button>
+      <button type="button" class="act act-flash" data-touch="flash"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg><span data-touch-label>Flash</span></button>
       <button type="button" class="act act-more" data-touch="more" aria-label="Tất cả thao tác"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button>
     </div>
     <section id="action-sheet" class="glass" aria-label="Tất cả thao tác">
@@ -138,12 +147,14 @@
         <button type="button" data-action="vehicle"><svg viewBox="0 0 24 24"><path d="M14 4h5v16h-5"/><path d="M4 12h10M10 8l4 4-4 4"/></svg><span data-label>Tương tác</span><small>E</small></button>
         <button type="button" class="need-walk" data-action="jump"><svg viewBox="0 0 24 24"><path d="M12 19V6M6 12l6-6 6 6"/></svg><span>Nhảy</span><small>Space</small></button>
         <button type="button" class="need-walk" data-touch="run"><svg viewBox="0 0 24 24"><circle cx="14" cy="4.5" r="1.8"/><path d="M8 21l3-6 3 2v5M6 12l3-4h5l3 4M11 15l2-5"/></svg><span data-run-label>Chạy</span><small>Shift</small></button>
+        <button type="button" class="need-walk" data-action="flash"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg><span data-label>Flash</span><small>Q</small></button>
         <button type="button" class="need-walk" data-action="kick"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7l4 3-1.5 4.5h-5L8 10z"/></svg><span>Sút bóng</span><small>K</small></button>
         <button type="button" data-action="horn"><svg viewBox="0 0 24 24"><path d="M4 10v4h3l6 4V6L7 10z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/></svg><span data-label>Vẫy tay</span><small>H</small></button>
         <button type="button" class="need-walk" data-action="sleep"><svg viewBox="0 0 24 24"><path d="M3 18h18M5 18v-5h14v5M7 13v-2a2 2 0 0 1 4 0v2"/><path d="M15 4h4l-4 4h4"/></svg><span>Nằm ngủ</span><small>Z</small></button>
         <button type="button" data-action="wardrobe"><svg viewBox="0 0 24 24"><path d="M8 4l-5 3 2 4 2-1v10h10V10l2 1 2-4-5-3a4 4 0 0 1-8 0z"/></svg><span>Thay đồ</span><small>T</small></button>
         <button type="button" data-action="camera"><svg viewBox="0 0 24 24"><path d="M4 8h3l2-2h6l2 2h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span data-label>Góc nhìn</span><small>C</small></button>
         <button type="button" data-action="night"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span data-label>Buổi tối</span><small>N</small></button>
+        <button type="button" data-action="weather"><svg viewBox="0 0 24 24"><path d="M7 17a4 4 0 0 1-.5-8 5.5 5.5 0 0 1 10.6 1.5A3.3 3.3 0 0 1 17 17z"/><path d="M9 20l-1 2M13 20l-1 2M17 20l-1 2"/></svg><span data-label>Nắng đẹp</span><small>R · thời tiết</small></button>
         <button type="button" data-touch="control"><svg viewBox="0 0 24 24"><path d="M12 3l3 3h-6zM12 21l-3-3h6zM3 12l3-3v6zM21 12l-3 3V9z"/><circle cx="12" cy="12" r="2"/></svg><span data-control-label>Điều khiển</span><small>Xoay / Mũi tên</small></button>
         <button type="button" data-touch="fullscreen"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span>Toàn màn hình</span><small>&nbsp;</small></button>
       </div>
