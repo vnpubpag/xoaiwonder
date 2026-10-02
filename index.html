@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <script type="module" crossorigin src="./assets/index-CCr3sGMH.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-Dyy82t_C.css">
+    <script type="module" crossorigin src="./assets/index-8sMJXTWW.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BwDKpuzN.css">
   </head>
   <body>
     <canvas id="scene"></canvas>
@@ -43,10 +43,10 @@
         <svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
         <span data-label>Buổi tối</span>
       </button>
-      <button class="glass" data-action="weather" title="Đổi thời tiết: nắng, gió, mưa, tuyết, giông bão (R)">
+      <div class="glass weather-chip" title="Thời tiết tự đổi ngẫu nhiên, mỗi phút một lần">
         <svg viewBox="0 0 24 24"><path d="M7 17a4 4 0 0 1-.5-8 5.5 5.5 0 0 1 10.6 1.5A3.3 3.3 0 0 1 17 17z"/><path d="M9 20l-1 2M13 20l-1 2M17 20l-1 2"/></svg>
-        <span data-label>Nắng đẹp</span>
-      </button>
+        <span data-weather-label>Nắng đẹp</span>
+      </div>
       <button class="glass" data-action="horn" title="Bấm còi (H)">
         <svg viewBox="0 0 24 24"><path d="M4 10v4h3l6 4V6L7 10z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/></svg>
         <span data-label>Bấm còi</span>
@@ -79,8 +79,8 @@
 
     <aside class="hud-help glass hud-reveal">
       <div><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> / <kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd> <span class="drive-only">lái xe / đạp xe</span><span class="walk-only">đi bộ</span> · <kbd>E</kbd> <span class="drive-only">xuống xe</span><span class="walk-only">tương tác (xe, xe đạp, xích đu, quầy nước, ghế tàu)</span></div>
-      <div class="drive-only"><kbd>Space</kbd> phanh · <kbd>H</kbd> còi / chuông · <kbd>C</kbd> góc nhìn · <kbd>N</kbd> ngày/đêm · <kbd>R</kbd> thời tiết · <kbd>T</kbd> thay đồ</div>
-      <div class="walk-only"><kbd>Space</kbd> nhảy · <kbd>Shift</kbd> chạy · <kbd>K</kbd> sút bóng · <kbd>Q</kbd> Flash · <kbd>X</kbd> ngồi · <kbd>Z</kbd> nằm ngủ · <kbd>H</kbd> vẫy tay · <kbd>C</kbd> góc nhìn · <kbd>N</kbd> ngày/đêm · <kbd>R</kbd> thời tiết · <kbd>T</kbd> thay đồ</div>
+      <div class="drive-only"><kbd>Space</kbd> phanh · <kbd>H</kbd> còi / chuông · <kbd>C</kbd> góc nhìn · <kbd>N</kbd> ngày/đêm · <kbd>T</kbd> thay đồ</div>
+      <div class="walk-only"><kbd>Space</kbd> nhảy · <kbd>Shift</kbd> chạy · <kbd>K</kbd> sút bóng · <kbd>Q</kbd> Flash · <kbd>X</kbd> ngồi · <kbd>Z</kbd> nằm ngủ · <kbd>H</kbd> vẫy tay · <kbd>C</kbd> góc nhìn · <kbd>N</kbd> ngày/đêm · <kbd>T</kbd> thay đồ</div>
     </aside>
 
     <div class="hud-speed glass hud-reveal">
@@ -152,7 +152,6 @@
     <nav id="action-strip" class="glass" aria-label="Tất cả thao tác (vuốt ngang để xem thêm)">
       <div class="strip-scroll">
         <button type="button" data-action="wardrobe"><svg viewBox="0 0 24 24"><path d="M8 4l-5 3 2 4 2-1v10h10V10l2 1 2-4-5-3a4 4 0 0 1-8 0z"/></svg><span>Thay đồ</span></button>
-        <button type="button" data-action="weather"><svg viewBox="0 0 24 24"><path d="M7 17a4 4 0 0 1-.5-8 5.5 5.5 0 0 1 10.6 1.5A3.3 3.3 0 0 1 17 17z"/><path d="M9 20l-1 2M13 20l-1 2M17 20l-1 2"/></svg><span data-label>Nắng đẹp</span></button>
         <button type="button" data-action="night"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span data-label>Buổi tối</span></button>
         <button type="button" data-action="camera"><svg viewBox="0 0 24 24"><path d="M4 8h3l2-2h6l2 2h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span data-label>Góc nhìn</span></button>
         <button type="button" class="need-walk" data-action="sit"><svg viewBox="0 0 24 24"><path d="M7 3v9h9M7 12l-1 8M16 12l1 8M7 16h10"/></svg><span>Ngồi</span></button>
